@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CHUBB - AR Emailer/bin
+/CHUBB - AR Emailer/Documents
+/CHUBB - AR Emailer/obj
+/CHUBB - AR Emailer/packages
+/CHUBB - AR Emailer/.vs/CHUBB_AR_Emailer
