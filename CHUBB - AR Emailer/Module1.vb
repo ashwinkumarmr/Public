@@ -23,12 +23,12 @@ Module Module1
     Public bError As Boolean = True
     Public Function GetImageDirectory() As String
         Dim sSQL As String = "Select top 1 Value from Prolawini where ident = 'ImagesDir' and Section ='StmnLedgerPrefForm' "
-        GetImageDirectory = ""
+        Dim imageDirectoryPath As String = ""
         Dim oCom As SqlCommand
         Dim oConn As New SqlConnection
         Dim oDR As SqlDataReader = Nothing
         Try
-            oConn = New System.Data.SqlClient.SqlConnection(MakeConnection())
+            oConn = New SqlConnection(MakeConnection())
             oConn.Open()
             oCom = New System.Data.SqlClient.SqlCommand
             oCom.CommandTimeout = 0
@@ -37,7 +37,7 @@ Module Module1
             oDR = oCom.ExecuteReader
             If oDR.HasRows Then
                 While oDR.Read()
-                    GetImageDirectory = oDR(0)
+                    imageDirectoryPath = oDR(0)
                 End While
             End If
         Catch ex As Exception
@@ -50,7 +50,7 @@ Module Module1
             oConn = Nothing
         End Try
         'Form1.ListBox1.Items.Add("GetIMageDirectory value " & GetImageDirectory)
-        Return GetImageDirectory
+        Return imageDirectoryPath
     End Function
     Public Function MakeConnection() As String
         MakeConnection = ""
