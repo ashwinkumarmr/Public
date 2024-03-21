@@ -53,11 +53,11 @@ Module Module1
         Return imageDirectoryPath
     End Function
     Public Function MakeConnection() As String
-        MakeConnection = ""
+        Dim connectionString As String = ""
         Try
 
-            MakeConnection = ConfigurationManager.ConnectionStrings.Item("ARMailerDB").ConnectionString
-            Return MakeConnection
+            connectionString = ConfigurationManager.ConnectionStrings.Item("ARMailerDB").ConnectionString
+            Return connectionString
 
             sServer = ConfigurationManager.AppSettings("Server")
             sDatabase = ConfigurationManager.AppSettings("Database")
@@ -65,9 +65,9 @@ Module Module1
             sUserID = ConfigurationManager.AppSettings("UserID")
 
             If ConfigurationManager.AppSettings("UseTrustedConnection") = "N" Then
-                MakeConnection = "Network Library=DBMSSOCN; Initial Catalog=" & sDatabase & ";Data Source= " & sServer & ";uid=" & sUserID & ";pwd=" & sPassword
+                connectionString = "Network Library=DBMSSOCN; Initial Catalog=" & sDatabase & ";Data Source= " & sServer & ";uid=" & sUserID & ";pwd=" & sPassword
             Else
-                MakeConnection = "Network Library=DBMSSOCN; Initial Catalog=" & sDatabase & ";Data Source= " & sServer & ";Trusted_Connection=yes"
+                connectionString = "Network Library=DBMSSOCN; Initial Catalog=" & sDatabase & ";Data Source= " & sServer & ";Trusted_Connection=yes"
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -76,6 +76,6 @@ Module Module1
         'MakeConnection = "Network Library=DBMSSOCN; Initial Catalog=FPOHC001;Data Source=jsql17;uid=jSQLLLC;pwd=jSQLLLC"
         'End If
 
-        Return MakeConnection
+        Return connectionString
     End Function
 End Module
